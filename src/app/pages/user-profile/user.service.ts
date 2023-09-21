@@ -7,7 +7,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getData() {
-    return this.http.get("http://127.0.0.1:8000/api/user/");
+    return this.http.get("http://127.0.0.1:8000/api/users/");
   }
 
   postData(dataToSend:any) {

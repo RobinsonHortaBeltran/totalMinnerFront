@@ -12,7 +12,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -22,7 +24,14 @@ import { ComponentsModule } from './components/components.module';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
+    NgbModalModule,
+    BrowserModule,
+    AppRoutingModule,
+    ToastrModule.forRoot({
+      timeOut: 3000, // Duración del mensaje en milisegundos
+      positionClass: 'toast-top-right', // Posición del toast
+      preventDuplicates: true, // Evitar mensajes duplicados
+    })
   ],
   declarations: [
     AppComponent,

@@ -1,13 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Observable} from 'rxjs';
+import { environment } from '../../../environments/environment';
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class RegisterService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-  postData(dataToSend: any) {
-    // const dataToSend = { key1: "value1", key2: "value2" };
-    return this.http.post("http://127.0.0.1:8000/api/users/new", dataToSend);
+  private apiUrl: string = environment.apiUrl;
+  headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Authorization', 'Bearer tu_token')
+    .set('Accept', 'application/json');
+
+  registerUser(dataToSend: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}users/new/`, dataToSend);
+  }
+  register(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}users/new/`);
   }
 }

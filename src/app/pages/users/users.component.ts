@@ -3,11 +3,11 @@ import { HttpClient } from "@angular/common/http";
 import { UserService } from "./user.service";
 import {Router} from '@angular/router';
 @Component({
-  selector: "app-user-profile",
-  templateUrl: "./user-profile.component.html",
-  styleUrls: ["./user-profile.component.scss"],
+  selector: "app-users",
+  templateUrl: "./users.component.html",
+  styleUrls: ["./users.component.scss"],
 })
-export class UserProfileComponent implements OnInit {
+export class UsersComponent implements OnInit {
   nombrePila: string;
   correo: string;
   nombreCompleto: string;
@@ -18,12 +18,17 @@ export class UserProfileComponent implements OnInit {
   pais: string;
   saludar: string = 'Hola ' + localStorage.getItem('name');
   disableParams: boolean = true;
+  // @ts-ignore
+  permiso:string = '1';
+  mostrarPaymentsFlag: boolean = false;
+  mostrarListarFlag: boolean = false;
   constructor(private apiUser: UserService,
               private route: Router) {}
 
   ngOnInit() {
-    this.getData();
     this.validate();
+//this.permiso = localStorage.getItem('rol');
+
   }
 
   habilitar(): void {
@@ -34,22 +39,22 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  getData() {
-    this.apiUser.getData().subscribe((response) => {
-      console.log(response);
-    }, ( error ): void => {
-      console.error(error);
-    });
-  }
-
   validate(): void {
     const tokenKey = 'token'; // Reemplaza 'token' con la clave en la que has almacenado el token
-
     const token = localStorage.getItem(tokenKey);
 
     if (!token) {
       this.route.navigate(['/login']);
     }
   }
-
+  listUsers() {
+    //mostrar componente que lista usuarios
+    this.mostrarPaymentsFlag = false;
+    this.mostrarListarFlag = true;
+  }
+  listPayments() {
+    //mostrar componente que lista pagos
+    this.mostrarPaymentsFlag = true;
+    this.mostrarListarFlag = false;
+  }
 }
