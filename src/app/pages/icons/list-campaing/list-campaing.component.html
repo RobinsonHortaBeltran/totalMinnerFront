@@ -28,8 +28,16 @@
 </div>
 <div *ngIf="visible2">
   <form (ngSubmit)="onSubmit()" #fileForm="ngForm">
-    <input type="text" [(ngModel)]="monto" name="">
-    <input type="file" (change)="onFileChange($event)" name="image" accept="image/*" required>
+    <div class="form-group">
+      <label for="monto">monto</label>
+      <input type="text" [(ngModel)]="monto" name="" class="form-control" id="monto" placeholder="Ingrese el monto a consingar">
+    </div>
+    <div class="form-group">
+      <label for="image">Imagen de consignacion</label>
+      <input  type="file" class="form-control" (change)="onFileChange($event)" name="image" id="image" accept="image/*" required>
+    </div>
+
+
     <button type="submit">Enviar Imagen</button>
   </form>
 </div>
