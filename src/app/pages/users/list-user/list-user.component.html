@@ -1,0 +1,25 @@
+<div class="table-responsive">
+  <table class="table align-items-center table-flush">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col" class="text-sm-center" >Id</th>
+      <th scope="col" class="text-sm-center" >Nombre completo</th>
+      <th scope="col" class="text-sm-center" >Estado</th>
+      <th scope="col" class="text-sm-center" >...</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of users ">
+      <td class="text-sm-center">{{item.id}}</td>
+      <td class="text-sm-center">{{item.name}} {{ item.apellidos }}</td>
+      <td class="text-sm-center">
+        <span *ngIf="item.estado == '1'" class="badge badge-success">Activo</span>
+        <span *ngIf="item.estado != '1'" class="badge badge-danger">Inactivo</span>
+      </td>
+      <td class="text-sm-center">
+        <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser( item.id )">Eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,35 @@
+<div *ngIf="visible">
+<div class="table-responsive">
+  <table class="table align-items-center table-flush">
+    <thead class="thead-light">
+    <tr class="text-sm-center">
+      <th scope="col">Nombre</th>
+      <th scope="col">codigo</th>
+      <th scope="col">Estado</th>
+      <th scope="col">..</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor = " let item of campaings" class="text-sm-center">
+      <td>{{item.name}}</td>
+      <td>{{item.codigo}}</td>
+      <td class="text-sm-center">
+        <span *ngIf="item.estado == '1'" class="badge badge-success">Activo</span>
+        <span *ngIf="item.estado != '1'" class="badge badge-danger">Inactivo</span>
+      </td>
+      <td class="text-sm-center">
+        <button type="button" class="btn btn-danger btn-sm" (click)="deleteCampaing( item.id )">Eliminar</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="subscribeToCamp( item.id )">Subscribir</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+<div *ngIf="visible2">
+  <form (ngSubmit)="onSubmit()" #fileForm="ngForm">
+    <input type="text" [(ngModel)]="monto" name="">
+    <input type="file" (change)="onFileChange($event)" name="image" accept="image/*" required>
+    <button type="submit">Enviar Imagen</button>
+  </form>
+</div>

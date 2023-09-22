@@ -1,0 +1,39 @@
+<section>
+  <form [formGroup]="registerCampaing" (ngSubmit)="registerCampaingFunction(registerCampaing.value)">
+      <h6 class="heading-small text-muted mb-4">Informacion del usuario</h6>
+      <div class="pl-lg-4">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label" for="input-username">Nombre de la campaña</label>
+              <input type="text" id="input-username" formControlName="name"  class="form-control form-control-alternative" placeholder="Nombre de la campaña" >
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label" for="input-email">Codigo de la campaña</label>
+              <input type="email" id="input-email" formControlName="codigo"  class="form-control form-control-alternative" placeholder="Codigo de la campaña">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">Estado de la campaña</label>
+              <select class="form-control form-control-alternative" formControlName="estado">
+                <option selected>Seleccione</option>
+                <option value="1">Activa</option>
+                <option value="0">Inactiva</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <button type="submit" style="width: 100%" class="btn btn-success btn-lg mt-4">Enviar</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+  </form>
+</section>
