@@ -29,7 +29,16 @@ export class SidebarComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter((menuItem) => menuItem);
+
+
+    const ver: number = Number(localStorage.getItem('rol'));
+
+    // tslint:disable-next-line:triple-equals
+    if (ver === 1) {
+      this.menuItems = ROUTES.filter((menuItem) => menuItem);
+    } else {
+      this.menuItems =  ver === 2 ? ROUTES.filter(route => route.path === '/dashboard' || route.path === '/campaings') : [];
+    }
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
     });

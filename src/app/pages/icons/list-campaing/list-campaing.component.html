@@ -18,7 +18,7 @@
         <span *ngIf="item.estado != '1'" class="badge badge-danger">Inactivo</span>
       </td>
       <td class="text-sm-center">
-        <button type="button" class="btn btn-danger btn-sm" (click)="deleteCampaing( item.id )">Eliminar</button>
+        <button type="button" *ngIf="hidden" class="btn btn-danger btn-sm" (click)="deleteCampaing( item.id )">Eliminar</button>
         <button type="button" class="btn btn-primary btn-sm" (click)="subscribeToCamp( item.id )">Subscribir</button>
       </td>
     </tr>
@@ -27,6 +27,9 @@
 </div>
 </div>
 <div *ngIf="visible2">
+  <div class="form-group">
+    <button type="button" class="btn btn-default" (click)="back()" ><i class="ni ni-bold-left"></i></button>
+  </div>
   <form (ngSubmit)="onSubmit()" #fileForm="ngForm">
     <div class="form-group">
       <label for="monto">monto</label>
@@ -38,6 +41,6 @@
     </div>
 
 
-    <button type="submit">Enviar Imagen</button>
+    <button type="submit" class="btn btn-success">Enviar solicitud</button>
   </form>
 </div>

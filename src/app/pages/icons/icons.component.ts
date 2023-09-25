@@ -12,12 +12,19 @@ export class IconsComponent implements OnInit {
 
   saludarCamp: string = 'Hola ' + localStorage.getItem('name');
   public copy: string;
-  mostrarCampFlag: boolean = false;
-  mostrarListarFlag: boolean = false;
+  mostrarCampFlag = false;
+  mostrarListarFlag = false;
+  hidden = false;
   constructor(private route: Router) { }
 
   ngOnInit() {
     this.validate();
+    const ver: number = Number(localStorage.getItem('rol'));
+    console.log(ver);
+    // tslint:disable-next-line:triple-equals
+    if (ver === 1) {
+      this.hidden = true;
+    }
   }
 
   validate(): void {

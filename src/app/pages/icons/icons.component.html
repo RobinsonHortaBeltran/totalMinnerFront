@@ -27,7 +27,7 @@
             </div>
             <div class="col text-right">
               <a style="cursor:pointer" (click)="list()" class="btn btn-sm btn-secondary">Listar campañas</a>
-              <a style="cursor:pointer" (click)="create()" class="btn btn-sm btn-primary">Crear campaña</a>
+              <a style="cursor:pointer" (click)="create()" *ngIf="hidden" class="btn btn-sm btn-primary">Crear campaña</a>
             </div>
           </div>
         </div>

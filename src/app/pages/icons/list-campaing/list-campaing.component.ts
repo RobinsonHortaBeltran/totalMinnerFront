@@ -17,10 +17,16 @@ export class ListCampaingComponent implements OnInit {
   selectedFile: File | null = null;
   campaing:any;
   monto: any;
+hidden:boolean = false;
   constructor(private api: CampaingService, private toast: ToastrService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.getData();
+    const ver: number = Number(localStorage.getItem('rol'));
+    // tslint:disable-next-line:triple-equals
+    if (ver === 1) {
+      this.hidden = true;
+    }
   }
 getData(): void {
     this.api.getCampaing().subscribe((response: any )  => {
@@ -55,12 +61,20 @@ getData(): void {
   }
   onSubmit(): void {
   if (this.selectedFile) {
-    this.api.uploadFile(this.selectedFile,
-      this.campaing, this.monto).subscribe((response): void => {
-      console.log(response);
-    }, function (err) {
-      console.log(err);
-    });
+    // tslint:disable-next-line:triple-equals
+    if ( this.monto != undefined) {
+      this.api.uploadFile(this.selectedFile,
+        this.campaing, this.monto).subscribe((response): void => {
+        this.toast.success(response.message);
+      }, function (err) {
+        this.toast.error(err.error);
+      });
+    } else {
+      this.toast.error('Debe ingresar un monto');
+    }
+   }
   }
+  back(): void{
+    location.reload();
   }
 }

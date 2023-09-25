@@ -73,5 +73,7 @@ registerCampain(form): void {
         });
     });
   }
-
+  getPayments() {
+    return this.http.get(`${this.apiUrl}file/index`);
+  }
 }
